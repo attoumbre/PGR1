@@ -103,13 +103,14 @@ public class InsertionInteger {
      * @param scanner
      */
     public void createArray(Scanner scanner) {
+        while (scanner.hasNext()) {
         int value = scanner.nextInt();
         if (value >= 0) { // Seulement les valeurs positives
             this.insert(value);
         }
 
     }
-
+    }
     @Override
     public String toString() {
         return null;
