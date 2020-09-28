@@ -50,33 +50,6 @@ public class InsertionInteger {
      */
     public boolean insert(int value) {
 
-          /*  boolean insert = false;
-
-            if(size == SIZE_MAX) {
-                return insert;
-            }
-
-            for (int i = 0; i < array.length-1; i++){
-                if(array[i] < value ) {
-                    if(size == 0) {
-                        array[i] = value;
-                        size++; // size = 1
-                        insert = true;
-                    }
-                    if(array[i+1] > value) {
-                        for(int j = i+1; j < size-1 ;j++) {
-                            int k = array[j];
-                            array[j] = value;
-                            array[j+1] = k;
-                        }
-                        insert = true;
-                    }
-                }
-            }
-
-            return insert;
-        }
-*/
         if (value >= 0 && this.size < SIZE_MAX) {
             int insertPoint = Arrays.binarySearch(this.array, 0, this.size, value); //recherche de la valeur dans le tableau trié et retourne l'index
             boolean exist = insertPoint >= 0;
