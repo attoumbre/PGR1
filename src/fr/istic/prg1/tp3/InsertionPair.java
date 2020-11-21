@@ -1,4 +1,5 @@
-package fr.istic.prg1;
+package fr.istic.prg1.tp3;
+
 import java.util.Scanner;
 import java.util.Arrays;
 public class InsertionPair {

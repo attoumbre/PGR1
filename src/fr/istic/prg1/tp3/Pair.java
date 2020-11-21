@@ -1,4 +1,4 @@
-package fr.istic.prg1;
+package fr.istic.prg1.tp3;
 
 public class Pair implements Comparable<Pair>{
     private int x;
