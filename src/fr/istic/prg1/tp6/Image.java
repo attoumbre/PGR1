@@ -8,9 +8,9 @@ import fr.istic.prg1.tree_util.Node;
 import fr.istic.prg1.tree_util.NodeType;
 
 /**
- * @author MickaÃ«l Foursov <foursov@univ-rennes1.fr>
+ * @author Juvenal Attoumbre && Emilie DaConceicao
  * @version 5.0
- * @since 2016-04-20
+ * @since 2021-11-22
  * 
  *        Classe dÃ©crivant les images en noir et blanc de 256 sur 256 pixels
  *        sous forme d'arbres binaires.
@@ -78,12 +78,15 @@ public class Image extends AbstractImage {
 	 */
 	@Override
 	public void affect(AbstractImage image2) {
+
+		Iterator <Node> it2  = image2.iterator();
 		Iterator <Node> it  = this.iterator();
-		this.affectAux(it, image2.iterator());
+		it.clear();
+		this.affectAux(it, it2);
 	}
 
 	private void affectAux(Iterator<Node> it, Iterator<Node> it2) {
-		it.addValue(it2.getValue().valueOf(it2.getValue().state));
+		it.addValue(Node.valueOf(it2.getValue().state));
 		if(it2.nodeType() != NodeType.LEAF){
 			it.goLeft();
 			it2.goLeft();
@@ -112,7 +115,7 @@ public class Image extends AbstractImage {
 	public void rotate180(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -129,7 +132,7 @@ public class Image extends AbstractImage {
 	public void rotate90(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction non demeandï¿½e");
+		System.out.println("Fonction non demeandée");
 		System.out.println("-------------------------------------------------");
 		System.out.println();	    
 	}
@@ -143,7 +146,7 @@ public class Image extends AbstractImage {
 	public void videoInverse() {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -159,7 +162,7 @@ public class Image extends AbstractImage {
 	public void mirrorV(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -175,7 +178,7 @@ public class Image extends AbstractImage {
 	public void mirrorH(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -192,7 +195,7 @@ public class Image extends AbstractImage {
 	public void zoomIn(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -209,7 +212,7 @@ public class Image extends AbstractImage {
 	public void zoomOut(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -225,11 +228,56 @@ public class Image extends AbstractImage {
 	 */
 	@Override
 	public void intersection(AbstractImage image1, AbstractImage image2) {
-		System.out.println();
-		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
-		System.out.println("-------------------------------------------------");
-		System.out.println();
+		Iterator<Node> it = this.iterator();
+		it.clear();
+		this.IntersectionAux(it, image1.iterator(), image2.iterator());
+	}
+
+	private void IntersectionAux(Iterator<Node> it1, Iterator<Node> it2, Iterator<Node> it3) {
+
+		if(it2.getValue().state == 0 || it3.getValue().state==0 ){
+			it1.addValue(Node.valueOf(0));
+		} else if (it2.getValue().state == it3.getValue().state) {
+			switch (it2.getValue().state) {
+				case 1 : it1.addValue(Node.valueOf(1));
+					break;
+				case 2 : it1.addValue(Node.valueOf(2));
+					it1.goLeft();
+					it2.goLeft();
+					it3.goLeft();
+					this.IntersectionAux(it1,it2, it3);
+
+					int state1 = it1.getValue().state;
+
+					it1.goUp();
+					it2.goUp();
+					it3.goUp();
+
+					it1.goRight();
+					it2.goRight();
+					it3.goRight();
+					this.IntersectionAux(it1,it2, it3);
+
+					int state2 = it1.getValue().state;
+
+					it1.goUp();
+					it2.goUp();
+					it3.goUp();
+					if(state1 == state2 && state1 != 2) {
+						it1.clear();
+						it1.addValue(Node.valueOf(state1));
+					}
+					break;
+			}
+
+		}else {
+			if(it2.getValue().state == 2){
+				this.affectAux(it1,it2);
+			}else{
+				this.affectAux(it1, it3);
+			}
+		}
+
 	}
 
 	/**
@@ -244,7 +292,7 @@ public class Image extends AbstractImage {
 	public void union(AbstractImage image1, AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	}
@@ -259,7 +307,7 @@ public class Image extends AbstractImage {
 	public boolean testDiagonal() {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	    return false;
@@ -282,7 +330,7 @@ public class Image extends AbstractImage {
 	public boolean sameLeaf(int x1, int y1, int x2, int y2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 		return false;
@@ -299,7 +347,7 @@ public class Image extends AbstractImage {
 	public boolean isIncludedIn(AbstractImage image2) {
 		System.out.println();
 		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction ï¿½ ï¿½crire");
+		System.out.println("Fonction à écrire");
 		System.out.println("-------------------------------------------------");
 		System.out.println();
 	    return false;
