@@ -1,20 +1,17 @@
-package fr.istic.prg1.test;
-
-import fr.istic.prg1.list.MySet;
-import fr.istic.prg1.list.SubSet;
-import fr.istic.prg1.list_util.Iterator;
-import fr.istic.prg1.list_util.SmallSet;
-import org.junit.Test;
+package fr.istic.prg1.list.test;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import static org.junit.Assert.assertTrue;
+import fr.istic.prg1.MySet;
+import org.junit.Test;
+import fr.istic.prg1.list_util.Iterator;
+import fr.istic.prg1.list_util.SmallSet;
+import fr.istic.prg1.SubSet;
 
-//import fr.istic.prg1.list.MySet;
-//import fr.istic.prg1.list.SubSet;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Mickaël Foursov <foursov@univ-rennes1.fr>

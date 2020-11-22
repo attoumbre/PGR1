@@ -1,4 +1,4 @@
-package fr.istic.prg1.list;
+package fr.istic.prg1;
 
 import fr.istic.prg1.list_util.SmallSet;
 import fr.istic.prg1.list_util.SuperT;

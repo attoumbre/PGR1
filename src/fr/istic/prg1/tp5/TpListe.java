@@ -1,6 +1,8 @@
-package fr.istic.prg1.list;
+package fr.istic.prg1;
 
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Button;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
