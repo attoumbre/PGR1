@@ -302,11 +302,25 @@ public class Image extends AbstractImage {
 	 */
 	@Override
 	public void zoomIn(AbstractImage image2) {
-		System.out.println();
-		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction à écrire");
-		System.out.println("-------------------------------------------------");
-		System.out.println();
+		Iterator<Node> it = this.iterator();
+		it.clear();
+		int prof =0;
+		this.zoomInAux(it, image2.iterator(),prof);
+	}
+
+	private void zoomInAux(Iterator<Node> it1, Iterator<Node> it2,int prof) {
+		if(prof < 2){
+			if(it2.nodeType() != NodeType.LEAF){
+				it2.goLeft();
+				++prof;
+				this.zoomInAux(it1,it2,prof);
+			}else{
+				this.affectAux(it1,it2);
+			}
+		}else{
+			this.affectAux(it1,it2);
+		}
+
 	}
 
 	/**
@@ -319,12 +333,158 @@ public class Image extends AbstractImage {
 	 */
 	@Override
 	public void zoomOut(AbstractImage image2) {
-		System.out.println();
-		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction à écrire");
-		System.out.println("-------------------------------------------------");
-		System.out.println();
+		Iterator<Node> it1 = iterator();
+		it1.clear();
+		Iterator<Node> it2 = image2.iterator();
+
+		// si l'image à dézoomer est totalement noire
+		if (it2.getValue().state == 0) {
+			it1.addValue(Node.valueOf(0));
+		} else {
+
+			// Ajouter 2 au parent
+			it1.addValue(Node.valueOf(2));
+
+			// ajouter 0 sur la moitié droite
+			it1.goRight();
+			it1.addValue(Node.valueOf(0));
+
+			// ajouter 2 sur la moitié gauche
+			it1.goUp();
+			it1.goLeft();
+			it1.addValue(Node.valueOf(2));
+
+
+			// ajouter 0 sur le quart haut & droit
+			it1.goRight();
+			it1.addValue(Node.valueOf(0));
+
+			// Copier l'image sur le quart haut & gauche
+			it1.goUp();
+			it1.goLeft();
+			ZoomOutAux(it1, it2, 2);
+
+			// Remonter à la racine
+			it1.goRoot();
+			affectVal(it1);
+		}
 	}
+
+	/**
+	 * Fonction de zoom avec les itérateurs
+	 *
+	 * @param it1
+	 * @param it2
+	 * @return false si le dernier élément parcouru était un noeud
+	 */
+	private void ZoomOutAux(Iterator<Node> it1, Iterator<Node> it2, int prof) {
+		if (it2.nodeType() != NodeType.SENTINEL) {
+			if (prof < 16) {
+				// affecter
+				it1.addValue(it2.getValue());
+				++prof;
+
+				// aller à gauche
+				it1.goLeft();
+				it2.goLeft();
+				ZoomOutAux(it1, it2, prof); // parcourir le préfixe du sous-arbre gauche
+
+
+				it1.goUp();
+				it2.goUp();
+				it1.goRight();
+				it2.goRight();
+				ZoomOutAux(it1, it2, prof); // parcourir le préfixe du sous-arbre droit
+
+				it1.goUp(); // replacer l'itérateur là où il était à l'appel de la méthode
+				it2.goUp();
+			} else {
+				// tableau =>
+				//  0 : somme des pixels
+				int[] tableau = new int[]{0}; // 0
+
+				// pixel 0 => somme -1
+				// pixel 1 => somme + 1
+				// som > -1 => 1
+				if (it2.nodeType() == NodeType.DOUBLE) {
+					majorite(it2, tableau);
+				} else {
+					tableau[0] = it2.getValue().state == 0 ? -1 : 1;
+				}
+
+				it1.addValue(Node.valueOf(tableau[0] > -1 ? 1 : 0));
+			}
+		}
+	}
+
+	/**
+	 * Méthode pour trouver la majorité
+	 * entre le nombre de pixels blancs & noirs
+	 *
+	 * @param it
+	 * @param tableau
+	 */
+	private void majorite(Iterator<Node> it, int[] tableau) {
+		if (it.nodeType() != NodeType.SENTINEL) {
+			if (it.nodeType() == NodeType.LEAF) {
+				tableau[0] += it.getValue().state == 0 ? -1 : 1;
+			}
+
+			// aller à gauche
+			it.goLeft();
+			majorite(it, tableau); // parcourir le préfixe du sous-arbre gauche
+
+			it.goUp();
+			it.goRight();
+
+			majorite(it, tableau); // parcourir le préfixe du sous-arbre gauche
+			it.goUp(); // replacer l'itérateur là où il était à l'appel de la méthode
+		}
+	}
+
+	/**
+	 * Méthode pour corriger un arbre
+	 *
+	 * @param it
+	 */
+	public void affectVal(Iterator<Node> it) {
+		if (it.nodeType() != NodeType.SENTINEL) {
+			// affecter
+			it.goLeft();
+			affectVal(it); // parcourir le préfixe du sous-arbre gauche
+
+			// Récupérer la valeur à gauche
+			// Avant de remonter
+			int left = it.nodeType() != NodeType.SENTINEL ? it.getValue().state : 0;
+
+
+			it.goUp();
+			it.goRight();
+
+			affectVal(it); // parcourir le préfixe du sous-arbre droit
+
+			// Récupérer la valeur à droite
+			// Avant de remonter
+			int right = it.nodeType() != NodeType.SENTINEL ? it.getValue().state : 1;
+
+
+			it.goUp(); // replacer l'itérateur là où il était à l'appel de la méthode
+
+			// Corriger l'arbre
+			if (it.nodeType() == NodeType.DOUBLE && left == right && left != 2) {
+				// retirer le noeud
+				it.clear();
+
+				// Remplacer par un noeud simple
+				it.addValue(Node.valueOf(left));
+			}
+		}
+
+
+	}
+
+
+
 
 	/**
 	 * this devient l'intersection de image1 et image2 au sens des pixels
@@ -463,13 +623,77 @@ public class Image extends AbstractImage {
 	 */
 	@Override
 	public boolean testDiagonal() {
-		System.out.println();
-		System.out.println("-------------------------------------------------");
-		System.out.println("Fonction à écrire");
-		System.out.println("-------------------------------------------------");
-		System.out.println();
-		return false;
+
+	    /*
+	         2
+	         /\
+	         2  2
+	        /\  /\
+	       2  0 2 1
+	       /\   /\
+	       0 0   0 1
+
+
+	          2
+	         /\
+	         1 2
+	           /\
+	           0 1
+
+
+	          2
+	         /\
+	         2 2
+	        /\ /\
+	       0 1 0 1
+
+	     */
+		boolean isRigth = true;
+		int prof= 0;
+		Iterator<Node>it = this.iterator();
+		return this.testDiagonalAux(it, prof,isRigth);
 	}
+
+	private boolean testDiagonalAux(Iterator<Node> it, int prof, boolean isRigth) {
+
+		if(it.getValue().state==1){
+			return true;
+		}
+		if(it.getValue().state == 0){
+			return  false;
+		}
+
+		if (prof % 2 == 0) {
+			it.goLeft();
+			++prof;
+			boolean gauche = this.testDiagonalAux(it, prof,false);
+			it.goUp();
+			it.goRight();
+			boolean droit = this.testDiagonalAux(it, prof, true);
+			it.goUp();
+			--prof;
+			return gauche && droit;
+		} else {
+			if (isRigth) {
+				it.goRight();
+				++prof;
+				boolean droit = this.testDiagonalAux(it, prof,true);
+				it.goUp();
+				--prof;
+				return droit;
+			} else {
+				it.goLeft();
+				++prof;
+				boolean gauche = this.testDiagonalAux(it, prof,false);
+				it.goUp();
+				--prof;
+				return gauche ;
+			}
+
+		}
+
+	}
+
 
 	/**
 	 * @param x1
