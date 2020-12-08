@@ -250,7 +250,7 @@ public class MySet extends List<SubSet> {
 	 *            deuxieme ensemble
 	 */
 	public void difference(MySet set2) {
-		if (this.equals(set2)) {
+		if (this==set2) {
 			this.clear();
 		} else {
 			Iterator<SubSet> it = this.iterator();
@@ -289,7 +289,7 @@ public class MySet extends List<SubSet> {
 	 *            deuxieme ensemble
 	 */
 	public void symmetricDifference(MySet set2) {
-		if (this.equals(set2)) {
+		if (this==set2) {
 			this.clear();
 		} else {
 			Iterator<SubSet> it = this.iterator();
@@ -333,7 +333,7 @@ public class MySet extends List<SubSet> {
 	 *            deuxieme ensemble
 	 */
 	public void intersection(MySet set2) {
-		if (!this.equals(set2)) {
+		if (!this==set2) {
 			Iterator<SubSet> it = this.iterator();
 			Iterator<SubSet> it2 = set2.iterator();
 
@@ -373,7 +373,7 @@ public class MySet extends List<SubSet> {
 	 *            deuxieme ensemble
 	 */
 	public void union(MySet set2) {
-		if (!this.equals(set2)) {
+		if (!this==set2) {
 			Iterator<SubSet> it = this.iterator();
 			Iterator<SubSet> it2 = set2.iterator();
 
