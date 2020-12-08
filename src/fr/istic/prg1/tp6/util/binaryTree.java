@@ -1,9 +1,9 @@
-package fr.istic.prg1.tree.util;
+package fr.istic.prg1.tp6.util;
 
 import java.util.Stack;
 
-import fr.istic.prg1.tree_util.Iterator;
-import fr.istic.prg1.tree_util.NodeType;
+import fr.istic.prg1.tp6.util.Iterator;
+import fr.istic.prg1.tp6.util.NodeType;
 /**
  * @author Juvenal Kouadio ATTOUMBRE && Emilie DA CONCEICAO
  *

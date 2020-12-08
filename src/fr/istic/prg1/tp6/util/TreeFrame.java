@@ -1,4 +1,4 @@
-package fr.istic.prg1.tree.util;
+package fr.istic.prg1.tp6.util;
 
 import java.awt.Frame;
 import java.awt.Color;
@@ -10,9 +10,9 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 import fr.istic.prg1.tree.util.AbstractImage;
-import fr.istic.prg1.tree_util.Iterator;
+import fr.istic.prg1.tp6.util.Iterator;
 import fr.istic.prg1.tree_util.Node;
-import fr.istic.prg1.tree_util.NodeType;
+import fr.istic.prg1.tp6.util.NodeType;
 
 import java.awt.event.WindowEvent;
 

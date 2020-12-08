@@ -1,4 +1,4 @@
-package fr.istic.prg1;
+package fr.istic.prg1.tp5;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,10 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 
-import fr.istic.prg1.list_util.Comparison;
-import fr.istic.prg1.list_util.Iterator;
-import fr.istic.prg1.list_util.List;
-import fr.istic.prg1.list_util.SmallSet;
+import fr.istic.prg1.tp5.list_util.List;
+import fr.istic.prg1.tp5.list_util.*;
+
 
 /**
  * @author Mickael Foursov <foursov@univ-rennes1.fr>
@@ -207,7 +206,8 @@ public class MySet extends List<SubSet> {
 
 
 	/**
-	 * @return true si le nombre saisi par l'utilisateur appartient a this,
+	 * @return true si l
+	 * e nombre saisi par l'utilisateur appartient a this,
 	 *         false sinon
 	 */
 	public boolean contains() {

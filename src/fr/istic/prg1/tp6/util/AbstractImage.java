@@ -1,4 +1,4 @@
-package fr.istic.prg1.tree.util;
+package fr.istic.prg1.tp6.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,12 +8,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 
-import fr.istic.prg1.tree.util.TreeFrame;
-import fr.istic.prg1.tree_util.ImageTable;
-import fr.istic.prg1.tree_util.ImageWindow;
-import fr.istic.prg1.tree_util.Iterator;
+import fr.istic.prg1.tp6.util.TreeFrame;
+import fr.istic.prg1.tp6.util.ImageTable;
+import fr.istic.prg1.tp6.util.ImageWindow;
+import fr.istic.prg1.tp6.util.Iterator;
 import fr.istic.prg1.tree_util.Node;
-import fr.istic.prg1.tree_util.NodeType;
+import fr.istic.prg1.tp6.util.NodeType;
 
 /**
  * @author Mickaël Foursov <foursov@univ-rennes1.fr>

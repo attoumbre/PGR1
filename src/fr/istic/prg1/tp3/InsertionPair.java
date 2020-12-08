@@ -2,6 +2,7 @@ package fr.istic.prg1.tp3;
 
 import java.util.Scanner;
 import java.util.Arrays;
+import fr.istic.prg1.tp3.Pair;
 public class InsertionPair {
     private static final int SIZE_MAX = 10;
 

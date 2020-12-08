@@ -1,4 +1,4 @@
-package fr.istic.prg1.list_util;;
+package fr.istic.prg1.tp5.list_util;;
 
 public class List<T extends SuperT> {
     // liste en double chainage par references

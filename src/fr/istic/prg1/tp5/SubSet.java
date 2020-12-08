@@ -1,7 +1,7 @@
-package fr.istic.prg1;
+package fr.istic.prg1.tp5;
 
-import fr.istic.prg1.list_util.SmallSet;
-import fr.istic.prg1.list_util.SuperT;
+import fr.istic.prg1.tp5.list_util.List;
+import fr.istic.prg1.tp5.list_util.*;
 
 /**
  * Classe représentant les sous-ensembles de la classe MySet.

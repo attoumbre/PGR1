@@ -1,11 +1,11 @@
-package fr.istic.prg1.tree;
+package fr.istic.prg1.tp6;
 
 import java.util.Scanner;
 
-import fr.istic.prg1.tree_util.AbstractImage;
-import fr.istic.prg1.tree_util.Iterator;
-import fr.istic.prg1.tree_util.Node;
-import fr.istic.prg1.tree_util.NodeType;
+import fr.istic.prg1.tp6.util.AbstractImage;
+import fr.istic.prg1.tp6.util.Iterator;
+import fr.istic.prg1.tp6.util.Node;
+import fr.istic.prg1.tp6.util.NodeType;
 
 /**
  * @author Juvenal Attoumbre && Emilie DaConceicao

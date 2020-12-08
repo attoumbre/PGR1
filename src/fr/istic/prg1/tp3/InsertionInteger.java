@@ -27,9 +27,11 @@ public class InsertionInteger {
      * @return copie de la partie remplie du tableau
      */
     public int[] toArray() {
-
-
-        return Arrays.copyOf(this.array, this.size); //copie du tableau avec sa nouvelle taille
+        int[] tab = new int[size];
+        for (int i = 0; i < size; i++) {
+            tab[i] = array[i];
+        }
+        return tab;
     }
 
     /**
@@ -54,9 +56,6 @@ public class InsertionInteger {
             int insertPoint = Arrays.binarySearch(this.array, 0, this.size, value); //recherche de la valeur dans le tableau trié et retourne l'index
             boolean exist = insertPoint >= 0;
 
-
-
-
             if (!exist) {
                 this.array[this.size] = value;// Ajouter value à array si value ne l'appartient pas,
                 this.size++;// incrementer size de 1
@@ -76,17 +75,25 @@ public class InsertionInteger {
      * @param scanner
      */
     public void createArray(Scanner scanner) {
-        while (scanner.hasNext()) {
-        int value = scanner.nextInt();
-        if (value >= 0) { // Seulement les valeurs positives
-            this.insert(value);
+        while(scanner.hasNext()){
+            int value = scanner.nextInt();
+            if(value >= 0 && value!=-1){
+                insert(value);
+            }else{
+                break;
+            }
         }
 
     }
-    }
+
     @Override
     public String toString() {
-        return null;
+        int[] tab = toArray();
+        String str = "Tableau : ";
+        for(int i = 0; i < tab.length ; i++) {
+            str += Integer.toString(tab[i])+"-";
+        };
+        return str;
     }
 
 
