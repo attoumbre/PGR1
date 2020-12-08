@@ -118,17 +118,13 @@ public class Image extends AbstractImage {
 
 		//Clear this image
 		it1.clear();
-
-		if (!it2.isEmpty())
-			rotate180Aux(it2, it1);
+		rotate180Aux(it2, it1);
 	}
 
 	private void rotate180Aux(Iterator<Node> it2, Iterator<Node> it1) {
 
 		if (!it2.isEmpty()) {
-
-			int e = it2.getValue().state;
-			it1.addValue(Node.valueOf(e));
+			it1.addValue(Node.valueOf(it2.getValue().state));
 
 			it2.goLeft();
 			it1.goRight();
@@ -168,7 +164,6 @@ public class Image extends AbstractImage {
 	@Override
 	public void videoInverse() {
 		Iterator<Node> it = this.iterator();
-
 		//inverse tous les nodes et ses fils
 		inverseAux(it);
 	}
@@ -176,16 +171,14 @@ public class Image extends AbstractImage {
 	private void inverseAux(Iterator<Node> it) {
 
 		if (!it.isEmpty()) {
-			Node ns = it.getValue();
 
 			//Process this one
-			if (ns.state == 1) {
+			if (it.getValue().state == 1) {
 				it.setValue(Node.valueOf(0));
 			}
-			else if (ns.state == 0) {
+			else if (it.getValue().state == 0) {
 				it.setValue(Node.valueOf(1));
 			}
-
 			//Process the sons
 			it.goLeft();
 			inverseAux(it);
