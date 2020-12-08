@@ -1,4 +1,4 @@
-package fr.istic.prg1.tp6;
+package fr.istic.prg1.tp4;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ public class SmallSet {
         }
         return cpt;
     }
-    /l'ensemble contient il l element?'
+    //l'ensemble contient il l element?'
     public boolean contains(int x){
         return (x>=0 && x<=255)&& this.tab[x];
     }
