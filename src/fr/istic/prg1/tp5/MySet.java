@@ -374,7 +374,7 @@ public class MySet extends List<SubSet> {
 			Iterator<SubSet> it = this.iterator();
 			Iterator<SubSet> it2 = set2.iterator();
 
-			while (!it.isOnFlag()) {
+			while (!it2.isOnFlag()) {
 				SubSet cur = it.getValue();
 				SubSet cur2 = it2.getValue();
 
@@ -395,10 +395,7 @@ public class MySet extends List<SubSet> {
 						it2.goForward();
 				}
 			}
-			while (!it2.isOnFlag()) {
-				this.addTail(it2.getValue().clone());
-				it2.goForward();
-			}
+
 		}
 	}
 
